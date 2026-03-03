@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: last_fm
+  - override /model: hgt
+
+callbacks:
+  model_checkpoint:
+    filename: HGT-LastFM
+
+tags:
+  - HGT
+  - LastFM
+  - lp
+  - gnn
+  - exp2
+
+dataset:
+  homogeneous: false

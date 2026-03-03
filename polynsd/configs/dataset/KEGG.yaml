@@ -1,0 +1,3 @@
+_target_: polynsd.dti_prediction.DTIDataModule
+dataset: KEGG_MED
+split: 0

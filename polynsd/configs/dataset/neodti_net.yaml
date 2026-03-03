@@ -1,0 +1,3 @@
+_target_: polynsd.datasets.biomedical_dataset.NeoDTINetDataModule
+subsample_ratio: 0.1  # Subsample edges to 10% to avoid OOM
+node_feature_type: constant  # 'constant' or 'degree' - degree features improve learning but slower

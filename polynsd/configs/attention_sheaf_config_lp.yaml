@@ -1,0 +1,24 @@
+defaults:
+  - _self_
+  - trainer: trainer
+  - model: ind_attention_sheaf 
+  - dataset: last_fm #movie_lens #last_fm
+  - callbacks: sheaf_lp
+  - logger: wandb
+  - experiment: null
+
+dataset:
+  homogeneous: true
+
+sheaf_learner: type_concat #attention_type_concat #type_concat #attention_type_concat #local_concat
+
+recsys_metrics: true
+hidden_dim: 256
+tags:
+  - sheaf
+  - lp
+  - exp2
+
+optimization:
+  learning_rate: 0.001
+  weight_decay: 0.0005

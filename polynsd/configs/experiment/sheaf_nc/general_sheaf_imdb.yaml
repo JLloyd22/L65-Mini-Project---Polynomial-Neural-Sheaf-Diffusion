@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+  - override /dataset: imdb
+  - override /model: general_sheaf
+
+dataset:
+  homogeneous: true
+
+model:
+  args:
+    device: cuda
+    d: 5
+    dropout: 0.055436005626421994
+    hidden_channels: 64
+    initial_dropout: 0.7445418516519158
+    input_dropout: 0.13520833642561345
+    layers: 7
+
+callbacks:
+  model_checkpoint:
+    filename: 'GeneralSheaf-${sheaf_learner}-IMDB'

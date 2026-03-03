@@ -1,0 +1,21 @@
+{"time":"2026-02-08T16:03:13.890281165Z","level":"INFO","msg":"stream: starting","core version":"0.24.2"}
+{"time":"2026-02-08T16:03:14.473453399Z","level":"INFO","msg":"stream: created new stream","id":"5vwvxyyj"}
+{"time":"2026-02-08T16:03:14.474496407Z","level":"INFO","msg":"handler: started","stream_id":"5vwvxyyj"}
+{"time":"2026-02-08T16:03:14.482166109Z","level":"INFO","msg":"stream: started","id":"5vwvxyyj"}
+{"time":"2026-02-08T16:03:14.482287097Z","level":"INFO","msg":"writer: started","stream_id":"5vwvxyyj"}
+{"time":"2026-02-08T16:03:14.482318541Z","level":"INFO","msg":"sender: started","stream_id":"5vwvxyyj"}
+{"time":"2026-02-09T12:42:44.045898259Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-09T12:45:57.942286692Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": context deadline exceeded"}
+{"time":"2026-02-09T12:49:13.468819921Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-09T12:52:32.961907158Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-09T12:56:03.680720291Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-09T14:35:29.944360035Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": context deadline exceeded"}
+{"time":"2026-02-09T14:38:44.532238082Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-09T14:42:00.969259976Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": context deadline exceeded"}
+{"time":"2026-02-09T14:45:22.13848845Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": context deadline exceeded"}
+{"time":"2026-02-09T14:55:47.064475467Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/powergrids_node/5vwvxyyj/file_stream\": context deadline exceeded"}
+{"time":"2026-02-09T15:30:16.805537827Z","level":"INFO","msg":"stream: closing","id":"5vwvxyyj"}
+{"time":"2026-02-09T15:30:17.282107353Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-09T15:30:17.795337134Z","level":"INFO","msg":"handler: closed","stream_id":"5vwvxyyj"}
+{"time":"2026-02-09T15:30:17.797992466Z","level":"INFO","msg":"sender: closed","stream_id":"5vwvxyyj"}
+{"time":"2026-02-09T15:30:17.798549356Z","level":"INFO","msg":"stream: closed","id":"5vwvxyyj"}

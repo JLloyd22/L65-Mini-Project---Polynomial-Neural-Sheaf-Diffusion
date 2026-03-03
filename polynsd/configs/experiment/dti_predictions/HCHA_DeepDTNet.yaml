@@ -1,0 +1,28 @@
+# @package _global_
+defaults:
+  - override /dataset: DeepDTNet
+  - override /model: HCHA
+
+
+num_nodes: 3087
+num_hyperedges: 6147
+num_features: 128
+use_score_func: true
+out_channels: 256
+
+model:
+  heads: 2
+  dropout: 0.41375694872734176
+  num_layers: 2
+  hidden_channels: 64
+  residual_connections: false
+
+tags:
+  - exp4
+  - dti
+  - DeepDTNet
+  - HCHA
+
+callbacks:
+  model_checkpoint:
+    filename: HCHA-DeepDTNet

@@ -1,0 +1,25 @@
+  0%|                                                  | 0/1 [23:27:01<?, ?it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 708, in <module>
+    test_acc, best_val_acc, keep_running = run_exp_classic(wandb.config, dataset, model_cls, fold)
+                                           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 184, in run_exp_classic
+    return run_exp_snapshot_classic(args, dataset, model_cls, fold)
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 334, in run_exp_snapshot_classic
+    train_losses.append(train_snapshot(model, optimizer, data))
+                        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 157, in train_snapshot
+    out = model(data.x)
+  File "/home/jello22/miniconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/jello22/miniconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/models/disc_models.py", line 622, in forward
+    x = F.dropout(x, p=self.dropout, training=self.training)
+  File "/home/jello22/miniconda3/lib/python3.13/site-packages/torch/nn/functional.py", line 1441, in dropout
+    _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+                                                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

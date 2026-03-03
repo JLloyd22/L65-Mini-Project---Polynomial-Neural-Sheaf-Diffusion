@@ -1,0 +1,22 @@
+defaults:
+  - dataset: KEGG
+  - logger: wandb
+  - trainer: trainer
+  - callbacks: dti_prediction
+  - model: VSHAE
+  - experiment: null
+  - _self_
+
+
+num_nodes: ???
+num_hyperedges: ???
+num_features: ???
+out_channels: 64
+use_score_func: false
+tags: [ dti, sweep ]
+
+trainer:
+  max_epochs: 200
+
+#logger:
+#  wandb:

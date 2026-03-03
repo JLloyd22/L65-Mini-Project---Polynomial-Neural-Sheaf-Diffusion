@@ -1,0 +1,12 @@
+defaults:
+  - default
+
+early_stopping:
+  patience: 100
+  monitor: valid/loss
+
+model_checkpoint:
+  dirpath: checkpoints/sheaflp_checkpoints
+  mode: 'max'
+  save_top_k: 1
+  monitor: 'valid/accuracy'

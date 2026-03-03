@@ -1,0 +1,12 @@
+{"time":"2026-02-06T09:17:59.549440836Z","level":"INFO","msg":"stream: starting","core version":"0.24.2"}
+{"time":"2026-02-06T09:17:59.834239207Z","level":"INFO","msg":"stream: created new stream","id":"c1r77xnh"}
+{"time":"2026-02-06T09:17:59.836570705Z","level":"INFO","msg":"handler: started","stream_id":"c1r77xnh"}
+{"time":"2026-02-06T09:17:59.850882366Z","level":"INFO","msg":"stream: started","id":"c1r77xnh"}
+{"time":"2026-02-06T09:17:59.851073945Z","level":"INFO","msg":"sender: started","stream_id":"c1r77xnh"}
+{"time":"2026-02-06T09:17:59.851052527Z","level":"INFO","msg":"writer: started","stream_id":"c1r77xnh"}
+{"time":"2026-02-06T12:01:05.074974057Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/c1r77xnh/file_stream\": read tcp 172.29.253.90:57596->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2026-02-06T12:43:26.772132161Z","level":"INFO","msg":"stream: closing","id":"c1r77xnh"}
+{"time":"2026-02-06T12:43:27.251555547Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-06T12:43:27.412069031Z","level":"INFO","msg":"handler: closed","stream_id":"c1r77xnh"}
+{"time":"2026-02-06T12:43:27.415697189Z","level":"INFO","msg":"sender: closed","stream_id":"c1r77xnh"}
+{"time":"2026-02-06T12:43:27.41598916Z","level":"INFO","msg":"stream: closed","id":"c1r77xnh"}

@@ -1,0 +1,14 @@
+# MUTAG dataset configuration
+_target_: polynsd.datasets.graph_classification.MUTAGDataModule
+
+# Dataset parameters
+root: data/MUTAG
+num_workers: 4
+node_feature_type: constant  # Options: constant, degree
+
+# Train/val/test split
+train_split: 0.8
+val_split: 0.1
+test_split: 0.1
+
+task: "multiclass"

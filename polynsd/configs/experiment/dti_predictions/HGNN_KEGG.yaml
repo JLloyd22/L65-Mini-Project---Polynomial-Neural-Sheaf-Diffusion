@@ -1,0 +1,27 @@
+# @package _global_
+defaults:
+  - override /dataset: KEGG
+  - override /model: HGNN
+
+
+num_nodes: 5589
+num_hyperedges: 11177
+num_features: 128
+use_score_func: true
+out_channels: 256
+
+model:
+  dropout: 0.07387764889698152
+  num_layers: 5
+  hidden_channels: 128
+  residual_connections: true
+
+tags:
+  - exp4
+  - dti
+  - KEGG
+  - HGNN
+
+callbacks:
+  model_checkpoint:
+    filename: HGNN-KEGG

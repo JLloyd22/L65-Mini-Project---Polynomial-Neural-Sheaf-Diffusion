@@ -1,0 +1,14 @@
+# IEEE24 dataset configuration
+_target_: polynsd.datasets.graph_classification.IEEE24DataModule
+
+root: ../../datasets/ieee24/raw
+num_workers: 4
+node_feature_type: constant
+normalize_features: true
+normalize_targets: false
+
+train_split: 0.8
+val_split: 0.1
+test_split: 0.1
+
+task: "multiclass"

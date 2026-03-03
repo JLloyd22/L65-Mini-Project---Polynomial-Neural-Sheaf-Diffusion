@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: amazon_books
+  - override /model: rgcn
+
+callbacks:
+  model_checkpoint:
+    filename: RGCN-AmazonBooks
+
+tags:
+  - RGCN
+  - AmazonBooks
+  - lp
+  - gnn
+  - exp2
+
+dataset:
+  homogeneous: true

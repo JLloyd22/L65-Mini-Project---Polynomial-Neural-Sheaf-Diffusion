@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: last_fm
+  - override /model: gat
+
+callbacks:
+  model_checkpoint:
+    filename: GAT-LastFM
+
+dataset:
+  homogeneous: true
+
+tags:
+  - GAT
+  - LastFM
+  - lp
+  - gnn
+  - exp2

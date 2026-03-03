@@ -1,0 +1,9 @@
+_target_: polynsd.models.hgnn_baselines.HCHA
+use_attention: false
+in_channels: '${num_features}'
+out_channels: '${out_channels}'
+heads: 1
+residual_connections: false
+hidden_channels: 64
+dropout: 0
+num_layers: 6

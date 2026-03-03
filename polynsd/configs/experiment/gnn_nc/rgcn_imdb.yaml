@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /dataset: imdb
+  - override /model: rgcn
+
+callbacks:
+  model_checkpoint:
+    filename: RGCN-IMDB
+
+tags: [ RGCN, IMDB, exp1_1, nc, gnn ]

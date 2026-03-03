@@ -1,0 +1,64 @@
+defaults:
+  - model: gcn
+  - dataset: mutag  # Default graph classification dataset
+  - trainer: trainer
+  - logger: wandb
+  - experiment: null
+  - _self_ # at the end to override previous values if needed
+
+tags: [ GNN, graph_classification, inductive ]
+
+# Training settings
+trainer:
+  max_epochs: 100
+  log_every_n_steps: 100
+  precision: 32
+
+optimization:
+  learning_rate: 0.001
+  weight_decay: 0.0005
+
+# Dataset (MUTAG by default)
+dataset:
+  _target_: polynsd.datasets.graph_classification.MUTAGDataModule
+  root: data/MUTAG
+  candidate_set: ['C.4', 'N.4', 'O.2', 'F.1', 'I.1', 'Cl.1', 'Br.1']
+  homogeneous: true #because our model is for homogeneous graphs
+
+# Classifier training settings
+classifier:
+  # Optional pre-trained classifier path (null to train from scratch)
+  path: null
+  save_path: ./outputs/xgnn_outputs/xgnn_classifier.pth
+  hidden_channels: 48
+  output_dim: 64
+  num_layers: 3
+
+# Generator training settings
+generator:
+  target_class: 0
+  episodes: 100
+  lr: 0.003
+  max_nodes: 6
+  max_gen_steps: 7
+  num_rollouts: 10
+  hyp_rollout: 1.0
+  hyp_rules: 2.0
+  start_node: 0
+
+# Generation settings
+generation:
+  num_generations: 5
+
+# Output settings
+output:
+  output_dir: ./outputs/xgnn_outputs
+  save_plots: true
+
+device: null # auto detect
+
+# logger:
+#   _target_: lightning.pytorch.loggers.WandbLogger
+#   project: xgnn
+#   name: {now:YYYY-MM-DD_HH-mm-ss}
+#   config: ${cfg}

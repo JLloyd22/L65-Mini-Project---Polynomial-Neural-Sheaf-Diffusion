@@ -1,0 +1,92 @@
+defaults:
+  - model: ind_diag_sheaf
+  - dataset: mutag  # Default graph classification dataset
+  - trainer: trainer
+  - logger: wandb
+  - callbacks: sheaf_gc
+  - experiment: null
+  - _self_ # at the end to override previous values if needed
+
+sheaf_learner: 'type_concat' #'type_concat'
+tags: [ sheaf, graph_classification, inductive ]
+
+hidden_dim: 64
+pooling: mean
+
+# Callbacks
+callbacks:
+  early_stopping:
+    monitor: 'valid/loss'
+    patience: 50
+  model_checkpoint:
+    dirpath: checkpoints/sheafgc_checkpoints/
+    monitor: valid/accuracy
+    mode: max
+    save_top_k: 1
+    
+# Training settings
+trainer:
+  max_epochs: 200
+  log_every_n_steps: 10
+  precision: 32
+
+optimization:
+  learning_rate: 0.001
+  weight_decay: 0.0005
+
+# Dataset 
+dataset:
+  homogeneous: false 
+
+# Classifier training settings
+classifier:
+  # Optional pre-trained classifier path (null to train from scratch)
+  load_path: ./outputs/xgnn_outputs/
+  save_path: ./outputs/xgnn_outputs/
+  hidden_channels: 48
+  output_dim: 64
+  num_layers: 3
+
+# Generator training settings
+generator:
+  load_path: ./outputs/xgnn_outputs/
+  save_path: ./outputs/xgnn_outputs/
+  temperature: 1.0
+  episodes: 150
+  lr: 0.003
+  max_nodes: 25
+  min_nodes: 10
+  max_gen_steps: 25
+  num_rollouts: 15
+  hyp_rollout: 1.0
+  hyp_rules: 2.0
+  start_node: 0
+  hidden_dim: 32
+
+  # generator's sheaf (different from classifier's sheaf)
+  sheaf:
+    d: 4
+    layers: 2
+    sheaf_learner: type_concat
+    dropout: 0.1
+    input_dropout: 0.0
+    use_act: true
+    normalised: true
+    deg_normalised: false
+
+# Generation settings
+generation:
+  num_generations: 20
+
+# Output settings
+output:
+  output_dir: ./outputs/xgnn_outputs
+  save_plots: true
+
+device: null # auto detect
+
+# logger:
+#   _target_: lightning.pytorch.loggers.WandbLogger
+#   project: xgnn
+#   name: {now:YYYY-MM-DD_HH-mm-ss}
+#   config: ${cfg}

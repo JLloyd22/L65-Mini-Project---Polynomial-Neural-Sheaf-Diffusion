@@ -1,0 +1,12 @@
+{"time":"2026-02-08T15:43:22.310962604Z","level":"INFO","msg":"stream: starting","core version":"0.24.2"}
+{"time":"2026-02-08T15:43:22.598889682Z","level":"INFO","msg":"stream: created new stream","id":"tcfstvmb"}
+{"time":"2026-02-08T15:43:22.600247555Z","level":"INFO","msg":"handler: started","stream_id":"tcfstvmb"}
+{"time":"2026-02-08T15:43:22.610480401Z","level":"INFO","msg":"stream: started","id":"tcfstvmb"}
+{"time":"2026-02-08T15:43:22.61053059Z","level":"INFO","msg":"writer: started","stream_id":"tcfstvmb"}
+{"time":"2026-02-08T15:43:22.610571459Z","level":"INFO","msg":"sender: started","stream_id":"tcfstvmb"}
+{"time":"2026-02-08T15:44:11.283846026Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-08T15:44:11.545268024Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-08T15:44:11.552338611Z","level":"INFO","msg":"stream: closing","id":"tcfstvmb"}
+{"time":"2026-02-08T15:44:11.552868494Z","level":"INFO","msg":"handler: closed","stream_id":"tcfstvmb"}
+{"time":"2026-02-08T15:44:11.554473279Z","level":"INFO","msg":"sender: closed","stream_id":"tcfstvmb"}
+{"time":"2026-02-08T15:44:11.555096564Z","level":"INFO","msg":"stream: closed","id":"tcfstvmb"}

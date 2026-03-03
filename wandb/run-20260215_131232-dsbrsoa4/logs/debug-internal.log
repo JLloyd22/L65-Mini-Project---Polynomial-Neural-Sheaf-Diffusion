@@ -1,0 +1,11 @@
+{"time":"2026-02-15T13:12:33.588359711Z","level":"INFO","msg":"stream: starting","core version":"0.24.2"}
+{"time":"2026-02-15T13:12:33.947296704Z","level":"INFO","msg":"stream: created new stream","id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:33.948073665Z","level":"INFO","msg":"handler: started","stream_id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:33.977220052Z","level":"INFO","msg":"stream: started","id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:33.977237096Z","level":"INFO","msg":"writer: started","stream_id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:33.9779591Z","level":"INFO","msg":"sender: started","stream_id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:34.784798596Z","level":"INFO","msg":"stream: closing","id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:36.081346331Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-15T13:12:36.299920912Z","level":"INFO","msg":"handler: closed","stream_id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:36.302551015Z","level":"INFO","msg":"sender: closed","stream_id":"dsbrsoa4"}
+{"time":"2026-02-15T13:12:36.302976843Z","level":"INFO","msg":"stream: closed","id":"dsbrsoa4"}

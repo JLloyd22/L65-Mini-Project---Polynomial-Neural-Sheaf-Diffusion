@@ -1,0 +1,2 @@
+_target_: polynsd.datasets.link_pred.AmazonBooksDataModule
+subsample_ratio: 0.004  # Subsample to 0.4% to fit in GPU

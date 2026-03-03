@@ -1,0 +1,246 @@
+_wandb:
+    value:
+        cli_version: 0.24.2
+        e:
+            2t6sy9j2hf7d4n1hoq20bfvkdjdxehfz:
+                args:
+                    - --dataset=ieee118_node
+                    - --task=regression
+                    - --d=3
+                    - --layers=4
+                    - --hidden_channels=20
+                    - --left_weights=True
+                    - --right_weights=True
+                    - --lr=0.02
+                    - --maps_lr=0.005
+                    - --input_dropout=0.0
+                    - --dropout=0.7
+                    - --use_act=True
+                    - --model=DiagSheafPolynomial
+                    - --polynomial_type=ChebyshevType1
+                    - --normalised=True
+                    - --deg_normalised=False
+                    - --sparse_learner=True
+                    - --lambda_max_choice=iterative
+                    - --chebyshev_layers_K=15
+                    - --early_stopping=50
+                    - --weight_decay=0.005
+                    - --folds=1
+                    - --epochs=100
+                    - --snapshot_train_samples_per_epoch=1
+                    - --snapshot_eval_samples=10
+                    - --cuda=0
+                    - --entity=jelloyd22-university-of-cambridge
+                    - --wandb_project=powergrids_node
+                cpu_count: 16
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "1081101176832"
+                        used: "24305639424"
+                email: jelloyd22@outlook.com
+                executable: /home/jello22/miniconda3/bin/python
+                git:
+                    commit: 99d8672a6bad3446c023f0b9df8eb1182bf88e22
+                    remote: https://github.com/alessioborgi/PolySheafNeuralNetworks-PowerGrids.git
+                host: JacksLaptop
+                memory:
+                    total: "16435572736"
+                os: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+                program: -m exp.run
+                python: CPython 3.13.11
+                root: /mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids
+                startedAt: "2026-02-08T15:54:58.214086Z"
+                writerId: 2t6sy9j2hf7d4n1hoq20bfvkdjdxehfz
+        m: []
+        python_version: 3.13.11
+        t:
+            "1":
+                - 1
+                - 77
+            "2":
+                - 1
+                - 77
+            "3":
+                - 2
+                - 13
+                - 16
+                - 61
+            "4": 3.13.11
+            "5": 0.24.2
+            "12": 0.24.2
+            "13": linux-x86_64
+add_hp:
+    value: false
+add_lp:
+    value: false
+adjoint:
+    value: false
+adjoint_method:
+    value: adaptive_heun
+adjoint_step_size:
+    value: 1
+chebyshev_layers_K:
+    value: 15
+classes_corr:
+    value: null
+cuda:
+    value: 0
+d:
+    value: 3
+dataset:
+    value: ieee118_node
+deg_normalised:
+    value: false
+deterministic:
+    value: false
+device:
+    value: cpu
+dropout:
+    value: 0.7
+early_stopping:
+    value: 50
+earlystopxT:
+    value: 3
+edge_noise:
+    value: 0.05
+edge_weights:
+    value: true
+ellipsoid_radius:
+    value: 1
+ellipsoids:
+    value: true
+entity:
+    value: jelloyd22-university-of-cambridge
+epochs:
+    value: 100
+evectors:
+    value: 0
+feat_noise:
+    value: 0.25
+flops_profile_epochs:
+    value: 1
+folds:
+    value: 1
+gegenbauer_lambda:
+    value: 1
+graph_size:
+    value: 118
+het_coef:
+    value: 0.9
+hidden_channels:
+    value: 20
+input_dim:
+    value: 4
+input_dropout:
+    value: 0
+int_method:
+    value: null
+jacobi_alpha:
+    value: 0
+jacobi_beta:
+    value: 0
+just_add_noise:
+    value: false
+lambda_max_choice:
+    value: iterative
+layers:
+    value: 4
+left_weights:
+    value: true
+linear:
+    value: false
+lr:
+    value: 0.02
+maps_lr:
+    value: 0.005
+max_iters:
+    value: 100
+max_nfe:
+    value: 1000
+max_t:
+    value: 1
+max_test_steps:
+    value: 100
+min_acc:
+    value: 0
+model:
+    value: DiagSheafPolynomial
+new_synth_data:
+    value: false
+new_synth_edges:
+    value: false
+no_early:
+    value: false
+node_degree:
+    value: 10
+node_edge_sims_time_dependent:
+    value: false
+normalised:
+    value: true
+num_classes:
+    value: 2
+num_feats:
+    value: 10
+num_nodes:
+    value: 200
+orth:
+    value: householder
+output_dim:
+    value: 4
+poly_layers_K:
+    value: 3
+polynomial_type:
+    value: ChebyshevType1
+profile_flops:
+    value: false
+resource_analysis:
+    value: false
+right_weights:
+    value: true
+rotation_invariant_sheaf_learner:
+    value: false
+second_linear:
+    value: false
+seed:
+    value: 43
+sha:
+    value: 99d8672a6bad3446c023f0b9df8eb1182bf88e22
+sheaf_act:
+    value: tanh
+sheaf_decay:
+    value: 0.005
+snapshot_eval_samples:
+    value: 10
+snapshot_train_ratio:
+    value: 0.6
+snapshot_train_samples_per_epoch:
+    value: 1
+snapshot_val_ratio:
+    value: 0.2
+sparse_learner:
+    value: true
+step_size:
+    value: 1
+stop_strategy:
+    value: loss
+strict_determinism:
+    value: false
+sys_log_every_s:
+    value: 1
+task:
+    value: regression
+tol_scale:
+    value: 1
+tol_scale_adjoint:
+    value: 1
+use_act:
+    value: true
+use_embedding:
+    value: true
+use_epsilons:
+    value: true
+wandb_project:
+    value: powergrids_node
+weight_decay:
+    value: 0.005

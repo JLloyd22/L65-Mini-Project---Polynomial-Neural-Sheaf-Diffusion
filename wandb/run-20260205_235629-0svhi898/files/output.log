@@ -1,0 +1,12 @@
+ 10%|██                   | 1/10 [9:43:23<87:30:32, 35003.65s/it]
+Fold 0 | Epochs: 307 | Best epoch: 107
+Test acc: 0.8947
+Best val acc: 0.9167
+Laplacian 0: Max: 0.0003, Min: -0.0380, Avg: -0.0109, Abs avg: 0.0109
+Laplacian 1: Max: 0.0049, Min: -0.0454, Avg: -0.0112, Abs avg: 0.0116
+Laplacian 2: Max: 0.0549, Min: -0.0513, Avg: -0.0055, Abs avg: 0.0148
+Laplacian 3: Max: 0.3198, Min: -0.3377, Avg: -0.0168, Abs avg: 0.0453
+Epsilons 0: [1.357 0.078 1.1  ]
+Epsilons 1: [ 1.342 -0.084  1.095]
+Epsilons 2: [ 1.336 -0.132  1.049]
+Epsilons 3: [ 1.327 -0.232  1.065]

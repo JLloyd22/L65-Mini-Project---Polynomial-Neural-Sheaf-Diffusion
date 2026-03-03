@@ -1,0 +1,36 @@
+# @package _global_
+defaults:
+  - _self_
+  - model: gcn
+  - dataset: mutag  # Default graph classification dataset
+  - trainer: trainer
+  - logger: wandb
+  - callbacks: sheaf_gc
+  - experiment: null
+
+tags: [ GNN, graph_classification, inductive ]
+
+# Model settings
+hidden_dim: 64
+pooling: mean  # Graph pooling: mean, max, attention or add
+
+# Callbacks
+callbacks:
+  early_stopping:
+    monitor: 'valid/loss'
+    patience: 50
+  model_checkpoint:
+    dirpath: checkpoints/sheafgc_checkpoints/
+    monitor: valid/accuracy
+    mode: max
+    save_top_k: 1
+
+# Training settings
+trainer:
+  max_epochs: 200
+  log_every_n_steps: 10
+  precision: 32
+
+optimization:
+  learning_rate: 0.001
+  weight_decay: 0.0005

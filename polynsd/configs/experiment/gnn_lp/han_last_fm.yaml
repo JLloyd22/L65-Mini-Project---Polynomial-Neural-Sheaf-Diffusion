@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: last_fm
+  - override /model: han
+
+callbacks:
+  model_checkpoint:
+    filename: HAN-LastFM
+
+tags:
+  - HAN
+  - LastFM
+  - lp
+  - gnn
+  - exp2
+
+dataset:
+  homogeneous: false

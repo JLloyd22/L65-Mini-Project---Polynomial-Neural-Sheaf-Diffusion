@@ -1,0 +1,40 @@
+# @package _global_
+defaults:
+  - _self_
+  - model: ind_diag_sheaf
+  - dataset: proteins
+  - trainer: trainer
+  - logger: wandb
+  - callbacks: sheaf_gc
+  - experiment: null
+
+sheaf_learner: 'type_concat'
+tags: [ sheaf, graph_classification, inductive ]
+
+# Sheaf models require batch_size=1 (no batching) - set in dataset configs
+# They operate on single graph Laplacians and don't support batched graphs
+
+dataset:
+  homogeneous: false
+
+hidden_dim: 64
+
+# Callbacks
+callbacks:
+  early_stopping:
+    monitor: 'valid/loss'
+    patience: 50
+  model_checkpoint:
+    dirpath: checkpoints/sheafgc_checkpoints/
+    monitor: valid/accuracy
+    mode: max
+    save_top_k: 1
+
+trainer:
+  max_epochs: 200
+  log_every_n_steps: 10
+  precision: 32
+
+optimization:
+  learning_rate: 0.001
+  weight_decay: 0.0005

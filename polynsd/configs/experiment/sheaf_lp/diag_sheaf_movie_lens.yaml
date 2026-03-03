@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /dataset: movie_lens
+  - override /model: ind_diag_sheaf
+
+callbacks:
+  model_checkpoint:
+    filename: DiagSheaf-MovieLens
+
+tags: [ DiagSheaf, MovieLens, sheaf, lp, exp2 ]

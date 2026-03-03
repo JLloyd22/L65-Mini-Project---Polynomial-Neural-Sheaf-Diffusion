@@ -1,0 +1,12 @@
+{"time":"2026-02-05T23:56:29.60534055Z","level":"INFO","msg":"stream: starting","core version":"0.24.2"}
+{"time":"2026-02-05T23:56:30.01509308Z","level":"INFO","msg":"stream: created new stream","id":"0svhi898"}
+{"time":"2026-02-05T23:56:30.017454Z","level":"INFO","msg":"handler: started","stream_id":"0svhi898"}
+{"time":"2026-02-05T23:56:30.036515843Z","level":"INFO","msg":"stream: started","id":"0svhi898"}
+{"time":"2026-02-05T23:56:30.036602827Z","level":"INFO","msg":"sender: started","stream_id":"0svhi898"}
+{"time":"2026-02-05T23:56:30.036741815Z","level":"INFO","msg":"writer: started","stream_id":"0svhi898"}
+{"time":"2026-02-06T09:15:52.966126722Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": context deadline exceeded"}
+{"time":"2026-02-06T09:19:10.524563702Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-06T09:22:32.523009339Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-06T09:26:00.332250077Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-06T09:29:37.70561877Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-02-06T10:11:26.458562462Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/jelloyd22-university-of-cambridge/Chameleon_BestResults_PolySD_vs_Standard/0svhi898/file_stream\": read tcp 172.29.253.90:53982->35.186.228.49:443: read: connection reset by peer"}

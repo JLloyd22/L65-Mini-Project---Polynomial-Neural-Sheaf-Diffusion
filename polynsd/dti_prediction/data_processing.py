@@ -1,0 +1,254 @@
+#  Copyright (c) 2024. Luke Braithwaite
+#  License: MIT
+
+import os.path as osp
+from pathlib import Path
+from typing import Union, List, Tuple, Optional, Callable, Literal
+
+import lightning as L
+import numpy as np
+import torch
+from lightning.pytorch.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
+from torch_geometric.data import InMemoryDataset, download_url, extract_zip, Data
+from torch_geometric.typing import Adj
+
+try:
+    from . import utils
+except ImportError:
+    import utils
+
+EDGE_TYPE_MAP = {
+    ("drug", "disease"): "drug_treats",
+    ("drug", "protein"): "drug_targets",
+    ("protein", "drug"): "protein_interacts_with",
+    ("protein", "disease"): "protein_linked_to",
+    ("disease", "drug"): "disease_treated_by",
+    ("disease", "protein"): "disease_linked_to",
+}
+EDGE_TYPE_NAMES = [
+    "drug_treats",
+    "drug_targets",
+    "protein_interacts_with",
+    "protein_linked_to",
+    "disease_treated_by",
+    "disease_linked_to",
+]
+NODE_TYPE_NAMES = ["drug", "protein", "disease"]
+
+
+DTIDatasets = Literal["deepDTnet_20", "KEGG_MED", "DTINet_17"]
+
+
+class DTIData(InMemoryDataset):
+    def __init__(
+        self,
+        root_dir,
+        dataset: DTIDatasets = "deepDTnet_20",
+        split: int = 0,
+        transform: Optional[Callable] = None,
+        pre_transform: Optional[Callable] = None,
+        pre_filter: Optional[Callable] = None,
+        force_reload: bool = False,
+    ):
+        """DTI dataset for use on Hypergraph Neural Networks.
+
+        Args:
+            root_dir: root location to save dataset.
+            transform: transformation applied to data
+            pre_transform: initial transformations applied before preprocessing
+            pre_filter: filtering to apply before processing
+            force_reload: reprocess data if already processed
+            dataset: dataset to load in
+            split: split to use must be between 0 and 9 (inclusive).
+        """
+        self.dataset = dataset
+        self.edge_type_map = EDGE_TYPE_MAP
+        self.edge_type_names = EDGE_TYPE_NAMES
+        self.node_type_names = NODE_TYPE_NAMES
+        self.nodes_per_type: dict[str, int] = {}
+        self.hyperedges_per_type: dict[str, int] = {}
+        self.split = split
+        self.file_ids: dict[str, str] = {
+            "deepDTnet_20": "1RGS2K58Gjr5IxPJTE4G-MHl0S6Wk6UgZ",
+            "KEGG_MED": "1_XOT7Czd560UvkxpJM1-L5t9GXDPLhQr",
+            "DTINet_17": "1pLoNyznbcTaxBHW8cSNPUU6oN3WCAh3l",
+        }
+
+        super().__init__(
+            root_dir, transform, pre_transform, pre_filter, force_reload=force_reload
+        )
+
+        path = osp.join(self.processed_dir, f"data_{self.split}.pt")
+        self.load(path)
+
+    @property
+    def raw_dir(self) -> str:
+        return osp.join(self.root, self.dataset, "raw")
+
+    @property
+    def raw_file_names(self) -> Union[str, List[str], Tuple]:
+        return ["drug_disease.txt", "drug_protein.txt", "protein_disease.txt"]
+
+    @property
+    def raw_paths(self) -> List[str]:
+        return [osp.join(self.raw_dir, filename) for filename in self.raw_file_names]
+
+    @property
+    def processed_file_names(self) -> Union[str, List[str], Tuple]:
+        return f"data_{self.split}.pt"
+
+    @property
+    def processed_dir(self) -> str:
+        return osp.join(self.root, self.dataset, "processed")
+
+    def download(self):
+        url = f"https://drive.google.com/uc?export=download&id={self.file_ids[self.dataset]}"
+        path = download_url(url=url, folder=self.raw_dir, filename="data.zip")
+        extract_zip(path, self.raw_dir)
+
+    def get_incidence_matrices(self):
+        incidence_matrices: list[tuple[str, Adj]] = []
+        for path in self.raw_file_names:
+            filename = Path(path).stem
+            incidence_matrix = torch.Tensor(np.genfromtxt(f"{self.raw_dir}/{path}"))
+            incidence_matrices.append((filename, incidence_matrix))
+        return incidence_matrices
+
+    def process(self):
+        incidence_matrices = self.get_incidence_matrices()
+        hyperedge_idx = utils.generate_hyperedge_index(
+            incidence_matrices,
+            self.edge_type_map,
+            self.edge_type_names,
+            self.node_type_names,
+        )
+        # hyperedge_index, hyperedge_types, node_types = self.generate_hyperedge_index()
+        self.nodes_per_type = hyperedge_idx.nodes_per_type
+        self.hyperedges_per_type = hyperedge_idx.hyperedges_per_type
+        incidence_graph = utils.generate_incidence_graph(hyperedge_idx.hyperedge_index)
+        features = (
+            utils.generate_node_features(incidence_graph).detach().to(torch.float)
+        )
+
+        max_node_idx = torch.max(hyperedge_idx.hyperedge_index[0]).item() + 1
+        node_features = features[:max_node_idx]
+        hyperedge_features = features[max_node_idx:]
+
+        idx_offset = torch.Tensor(
+            [
+                [
+                    hyperedge_idx.node_start_idx["drug"],
+                    hyperedge_idx.node_start_idx["protein"],
+                ],
+            ]
+        )
+        train_idx_dataset = torch.utils.data.TensorDataset(
+            torch.Tensor(np.genfromtxt(f"{self.raw_dir}/train_{self.split}.txt"))
+            + idx_offset
+        )
+
+        generator1 = torch.Generator().manual_seed(42)
+        train_split, val_split = torch.utils.data.random_split(
+            train_idx_dataset, [0.875, 0.125], generator=generator1
+        )
+
+        train_idx = train_idx_dataset[train_split.indices][0].T.to(torch.long)
+        val_idx = train_idx_dataset[val_split.indices][0].T.to(torch.long)
+
+        test_idx = (
+            torch.Tensor(np.genfromtxt(f"{self.raw_dir}/test_{self.split}.txt"))
+            + idx_offset
+        ).T
+
+        data = Data(
+            x=node_features,
+            edge_index=hyperedge_idx.hyperedge_index,
+        )
+        data.hyperedge_attr = hyperedge_features
+        data.node_types = hyperedge_idx.node_types
+        data.hyperedge_types = hyperedge_idx.hyperedge_types
+        data.num_hyperedges = self.num_hyperedges
+        data.n_x = self.num_nodes
+        data.train_idx = train_idx
+        data.val_idx = val_idx
+        data.test_idx = test_idx
+        data.norm = torch.ones_like(data.edge_index[0])
+
+        data = data if self.pre_transform is None else self.pre_transform(data)
+
+        self.save([data], osp.join(self.processed_dir, f"data_{self.split}.pt"))
+
+    @property
+    def num_nodes(self):
+        return sum(self.nodes_per_type.values())
+
+    @property
+    def num_hyperedges(self):
+        return sum(self.hyperedges_per_type.values())
+
+    def print_summary(self):
+        print("======== Dataset summary ========")
+        print(f"Number of nodes: {self.num_nodes}")
+        print(f"Number of hyperedges: {self.num_hyperedges}")
+        print(f"Nodes per type: {self.nodes_per_type}")
+        print(f"Hyperedge per type: {dict(self.hyperedges_per_type)}")
+
+
+class DTIDataModule(L.LightningDataModule):
+    def __init__(
+        self,
+        dataset: DTIDatasets = "deepDTnet_20",
+        split: int = 0,
+        num_workers: int = 31,
+    ):
+        super(DTIDataModule, self).__init__()
+        self.dataset = dataset
+        self.split = split
+        self.data = None
+        self.name_mapping = {
+            "deepDTnet_20": "DeepDTNet",
+            "KEGG_MED": "KEGG",
+            "DTINet_17": "DTINet",
+        }
+        self.num_workers = num_workers
+
+    def prepare_data(self) -> None:
+        DTIData(root_dir="data", dataset=self.dataset, split=self.split)
+
+    def setup(self, stage: str) -> None:
+        dataset = DTIData(root_dir="data", dataset=self.dataset, split=self.split)
+        self.data = dataset[0]
+
+    def train_dataloader(self) -> TRAIN_DATALOADERS:
+        return torch.utils.data.DataLoader(
+            [self.data], collate_fn=lambda xs: xs[0], num_workers=self.num_workers
+        )
+
+    def test_dataloader(self) -> EVAL_DATALOADERS:
+        return torch.utils.data.DataLoader(
+            [self.data], collate_fn=lambda xs: xs[0], num_workers=self.num_workers
+        )
+
+    def val_dataloader(self) -> EVAL_DATALOADERS:
+        return torch.utils.data.DataLoader(
+            [self.data], collate_fn=lambda xs: xs[0], num_workers=self.num_workers
+        )
+
+    def __repr__(self):
+        return self.name_mapping[self.dataset]
+
+
+if __name__ == "__main__":
+    print(torch.__version__)
+    dm = DTIDataModule(dataset="KEGG_MED")
+    dm.prepare_data()
+    dm.setup("train")
+    data = dm.data
+    print(data)
+    print(data.x.shape)
+    print(data.hyperedge_attr.shape)
+    total = data.train_idx.shape[1] + data.test_idx.shape[1] + data.val_idx.shape[1]
+    print(data.train_idx.shape[1] / total)
+    print(data.val_idx.shape[1] / total)
+    print(data.test_idx.shape[1] / total)
+    print(data.edge_index[1].max().item() + 1)

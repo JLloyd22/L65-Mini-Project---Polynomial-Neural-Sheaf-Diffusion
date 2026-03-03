@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /dataset: last_fm
+  - override /model: ind_diag_sheaf
+
+callbacks:
+  model_checkpoint:
+    filename: DiagSheaf-LastFM
+
+tags: [ DiagSheaf, LastFM, sheaf, lp, exp2 ]

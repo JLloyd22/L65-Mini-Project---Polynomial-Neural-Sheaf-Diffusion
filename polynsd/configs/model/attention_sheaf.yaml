@@ -1,0 +1,19 @@
+_target_: polynsd.models.sheaf_gnn.DiscreteSheafAttentionDiffusion
+args:
+  _target_: polynsd.models.sheaf_gnn.config.SheafModelArguments
+  device: cuda
+  output_dim: 64
+  edge_weights: false
+  hidden_channels: 128
+  add_lp: false
+  add_hp: false
+  heads: 1
+  layers: 1
+  residual: true
+  orthogonal_maps: true
+  concatenate: true
+  d: 2
+  input_dropout: 0.0
+  dropout: 0.0
+  initial_dropout: 0.0
+sheaf_learner: '${sheaf_learner}'  

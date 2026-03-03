@@ -1,0 +1,7 @@
+_target_: polynsd.models.sheaf_gnn.inductive.InductivePolynomialDiscreteGeneralSheafDiffusion
+args:
+  _target_: polynsd.models.sheaf_gnn.config.SheafModelArguments
+  device: cuda
+  output_dim: 64
+  edge_weights: false
+sheaf_learner: '${sheaf_learner}'  

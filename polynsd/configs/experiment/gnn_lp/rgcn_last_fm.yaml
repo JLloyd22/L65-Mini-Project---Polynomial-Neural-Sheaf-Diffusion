@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: last_fm
+  - override /model: rgcn
+
+callbacks:
+  model_checkpoint:
+    filename: RGCN-LastFM
+
+tags:
+  - RGCN
+  - LastFM
+  - lp
+  - gnn
+  - exp2
+
+dataset:
+  homogeneous: true

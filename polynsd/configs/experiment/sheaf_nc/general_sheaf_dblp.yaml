@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+  - override /dataset: dblp
+  - override /model: general_sheaf
+
+dataset:
+  homogeneous: true
+
+model:
+  args:
+    device: cuda
+    d: 4
+    dropout: 0.09737414490518748
+    hidden_channels: 64
+    initial_dropout: 0.28534739542895965
+    input_dropout: 0.8391038790288524
+    layers: 6
+
+callbacks:
+  model_checkpoint:
+    filename: 'GeneralSheaf-${sheaf_learner}-DBLP'

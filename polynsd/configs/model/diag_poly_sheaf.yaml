@@ -1,0 +1,16 @@
+_target_: polynsd.models.sheaf_gnn.DiscreteDiagSheafDiffusionPolynomial
+args:
+  _target_: polynsd.models.sheaf_gnn.config.SheafModelArguments
+  device: cuda
+  d: 2
+  layers: 2
+  hidden_channels: 20
+  input_dropout: 0.0
+  dropout: 0.0
+  initial_dropout: 0.0
+  output_dim: 64
+  lambda_max_choice: "analytic"
+  polynomial_type: "ChebyshevType1"
+  poly_layers_K: 15
+#edge_index:
+sheaf_learner: '${sheaf_learner}'

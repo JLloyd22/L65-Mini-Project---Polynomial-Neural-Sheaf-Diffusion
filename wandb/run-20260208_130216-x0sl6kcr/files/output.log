@@ -1,0 +1,14 @@
+  0%|                                                     | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 542, in <module>
+    test_acc, best_val_acc, keep_running = run_exp_classic(wandb.config, dataset, model_cls, fold)
+                                           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 165, in run_exp_classic
+    train(model, optimizer, data)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids/exp/run.py", line 102, in train
+    loss = F.nll_loss(out, data.y[data.train_mask])
+                           ~~~~~~^^^^^^^^^^^^^^^^^
+IndexError: The shape of the mask [24] at index 0 does not match the shape of the indexed tensor [1] at index 0

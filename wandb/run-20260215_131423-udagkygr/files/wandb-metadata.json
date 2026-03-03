@@ -1,0 +1,53 @@
+{
+  "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "CPython 3.9.18",
+  "startedAt": "2026-02-15T13:14:23.065413Z",
+  "args": [
+    "--dataset=ieee24",
+    "--d=3",
+    "--layers=4",
+    "--hidden_channels=20",
+    "--left_weights=True",
+    "--right_weights=True",
+    "--lr=0.02",
+    "--maps_lr=0.005",
+    "--input_dropout=0.0",
+    "--dropout=0.7",
+    "--use_act=True",
+    "--model=DiagSheafPolynomial",
+    "--polynomial_type=ChebyshevType1",
+    "--normalised=True",
+    "--deg_normalised=False",
+    "--sparse_learner=True",
+    "--lambda_max_choice=iterative",
+    "--chebyshev_layers_K=15",
+    "--early_stopping=200",
+    "--weight_decay=0.005",
+    "--folds=1",
+    "--epochs=2",
+    "--cuda=-1",
+    "--entity=jelloyd22-university-of-cambridge",
+    "--wandb_project=powergrids_graph"
+  ],
+  "program": "-m exp.run",
+  "git": {
+    "remote": "https://github.com/alessioborgi/PolySheafNeuralNetworks-PowerGrids.git",
+    "commit": "99d8672a6bad3446c023f0b9df8eb1182bf88e22"
+  },
+  "email": "jelloyd22@outlook.com",
+  "root": "/mnt/c/Users/jello/OneDrive/Work Stuff/Cambridge MLMI Notes and Work/GDL/PolySheafNeuralNetworks-PowerGrids",
+  "host": "JacksLaptop",
+  "executable": "/home/jello22/miniconda3/envs/nsd/bin/python",
+  "cpu_count": 16,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "1081101176832",
+      "used": "24719908864"
+    }
+  },
+  "memory": {
+    "total": "16435572736"
+  },
+  "writerId": "fcxz56c0w45xe7rctkf43s4nvd70csub"
+}

@@ -1,0 +1,33 @@
+# @package _global_
+
+# Polynomial sheaf diffusion experiment for MUTAG dataset
+defaults:
+  - override /model: poly_sheaf
+  - override /dataset: mutag
+
+tags: [ poly_sheaf, MUTAG, graph_classification ]
+
+hidden_dim: 64
+pooling: mean
+
+model:
+  args:
+    hidden_dim: ${hidden_dim}
+    num_layers: 4
+    polynomial_order: 3
+    dropout: 0.2
+    left_weights: true
+    right_weights: true
+    sheaf_learner: "local_concat"
+    sheaf_type: "PolynomialSheafDiffusion"
+
+trainer:
+  max_epochs: 200
+  
+callbacks:
+  early_stopping:
+    patience: 50
+  model_checkpoint:
+    monitor: valid/accuracy
+    mode: max
+    dirpath: checkpoints/poly_sheafgc_mutag/

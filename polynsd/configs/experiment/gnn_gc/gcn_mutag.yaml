@@ -1,0 +1,28 @@
+# @package _global_
+
+# GNN baseline experiment for MUTAG dataset
+defaults:
+  - override /model: gcn
+  - override /dataset: mutag
+
+tags: [ GNN, GCN, MUTAG, graph_classification, baseline ]
+
+hidden_dim: 64
+pooling: mean
+
+model:
+  in_channels: ${dataset.num_node_features}
+  hidden_channels: ${hidden_dim}
+  out_channels: ${dataset.num_classes}
+  num_layers: 3
+  dropout: 0.5
+
+trainer:
+  max_epochs: 200
+  
+callbacks:
+  early_stopping:
+    patience: 50
+  model_checkpoint:
+    monitor: valid/accuracy
+    mode: max

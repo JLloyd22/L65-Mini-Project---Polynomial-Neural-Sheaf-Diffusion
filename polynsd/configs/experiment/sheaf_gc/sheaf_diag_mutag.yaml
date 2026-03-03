@@ -1,0 +1,32 @@
+# @package _global_
+
+# Sheaf diffusion experiment for MUTAG dataset
+defaults:
+  - override /model: sheaf_diag
+  - override /dataset: mutag
+
+tags: [ sheaf, diagonal, MUTAG, graph_classification ]
+
+hidden_dim: 64
+pooling: mean
+
+model:
+  args:
+    hidden_dim: ${hidden_dim}
+    num_layers: 4
+    dropout: 0.2
+    left_weights: true
+    right_weights: true
+    sheaf_learner: "local_concat"
+    sheaf_type: "DiagSheafDiffusion"
+
+trainer:
+  max_epochs: 200
+  
+callbacks:
+  early_stopping:
+    patience: 50
+  model_checkpoint:
+    monitor: valid/accuracy
+    mode: max
+    dirpath: checkpoints/sheafgc_diag_mutag/

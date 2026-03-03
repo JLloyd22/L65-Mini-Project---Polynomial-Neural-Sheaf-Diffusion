@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: movie_lens
+  - override /model: han
+
+callbacks:
+  model_checkpoint:
+    filename: HAN-MovieLens
+
+tags:
+  - Han
+  - MovieLens
+  - lp
+  - gnn
+  - exp2
+
+dataset:
+  homogeneous: false

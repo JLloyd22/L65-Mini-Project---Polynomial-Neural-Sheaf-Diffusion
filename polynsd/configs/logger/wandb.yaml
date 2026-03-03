@@ -1,0 +1,7 @@
+_target_: lightning.pytorch.loggers.WandbLogger
+project: Heterogeneous_Polynomial_SD
+# Default to the currently authenticated W&B user unless explicitly overridden.
+# Set via CLI or environment variables when running on a shared/team account.
+offline: false
+prefix: ""
+log_model: true

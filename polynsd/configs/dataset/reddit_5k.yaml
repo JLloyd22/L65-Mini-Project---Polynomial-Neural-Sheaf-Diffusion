@@ -1,0 +1,12 @@
+# REDDIT-MULTI-5K dataset configuration
+_target_: polynsd.datasets.graph_classification.REDDIT5KDataModule
+
+# Dataset parameters
+root: data/REDDIT-MULTI-5K
+num_workers: 4
+node_feature_type: degree  # Options: constant, degree (degree recommended for structural datasets)
+
+# Train/val/test split
+train_split: 0.8
+val_split: 0.1
+test_split: 0.1

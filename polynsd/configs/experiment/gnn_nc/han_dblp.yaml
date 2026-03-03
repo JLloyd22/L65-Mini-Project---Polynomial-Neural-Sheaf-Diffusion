@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /dataset: dblp
+  - override /model: han
+
+callbacks:
+  model_checkpoint:
+    filename: HAN-DBLP
+
+tags: [ HAN, DBLP, exp1_1, nc, gnn ]

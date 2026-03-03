@@ -1,0 +1,18 @@
+# @package _global_
+defaults:
+  - override /dataset: movie_lens
+  - override /model: gat
+
+callbacks:
+  model_checkpoint:
+    filename: GAT-MovieLens
+
+dataset:
+  homogeneous: true
+
+tags:
+  - GAT
+  - MovieLens
+  - lp
+  - gnn
+  - exp2

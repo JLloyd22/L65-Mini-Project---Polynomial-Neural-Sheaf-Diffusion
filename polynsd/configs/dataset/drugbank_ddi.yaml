@@ -1,0 +1,2 @@
+_target_: polynsd.datasets.biomedical_dataset.DrugBankDDIDataModule
+node_feature_type: constant  # 'constant' or 'degree' - degree features improve learning but slower

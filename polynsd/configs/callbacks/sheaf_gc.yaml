@@ -1,0 +1,25 @@
+defaults:
+  - early_stopping
+  - model_checkpoint
+  - timer
+
+early_stopping:
+  _target_: lightning.pytorch.callbacks.EarlyStopping
+  monitor: "valid/loss"
+  patience: 50
+  mode: "min"
+
+model_checkpoint:
+  _target_: lightning.pytorch.callbacks.ModelCheckpoint
+  dirpath: "checkpoints/sheafgc_checkpoints/"
+  filename: "epoch={epoch}-step={step}"
+  monitor: "valid/accuracy"
+  mode: "max"
+  save_top_k: 1
+  auto_insert_metric_name: false
+
+timer:
+  _target_: lightning.pytorch.callbacks.Timer
+  duration: null
+  interval: epoch
+  verbose: true

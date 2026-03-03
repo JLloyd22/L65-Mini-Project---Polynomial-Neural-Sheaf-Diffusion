@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /dataset: imdb
+  - override /model: han
+
+callbacks:
+  model_checkpoint:
+    filename: HAN-IMDB
+
+tags: [ HAN, IMDB, exp1_1, nc, gnn ]
