@@ -8,7 +8,7 @@ This repository does not include the PowerGraph datasets due to file size constr
 
 1. Go to the [PowerGraph figshare page](https://figshare.com/articles/dataset/PowerGraph/22820534)
 2. Download the `dataset_pf_opf` folder (this contains the power flow datasets used in our experiments)
-3. Place the contents in a `data/` directory at the project root
+3. Place the contents within the `datasets/` directory at the project root
 
 Your directory structure should look like:
 
