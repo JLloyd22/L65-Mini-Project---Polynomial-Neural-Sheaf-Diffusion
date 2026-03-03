@@ -28,4 +28,4 @@ The dataset includes four power grids (IEEE24, IEEE39, IEEE118, UK), each with 3
 
 ## Acknowledgements
 
-This project builds upon the [PolyNSD codebase]((https://github.com/alessioborgi/PolySheafNeuralNetworks-PowerGrids/tree/main)) by Alessio Borgi. We thank Alessio for providing the initial experimental framework.
+This project builds upon the [PolyNSD codebase](https://github.com/alessioborgi/PolySheafNeuralNetworks-PowerGrids/tree/main) by Alessio Borgi. We thank Alessio for providing the initial experimental framework.
