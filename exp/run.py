@@ -600,37 +600,6 @@ def run_exp_classic(args, dataset, model_cls, fold: int) -> Tuple[float, float, 
                     wandb_payload[f"fold{fold}_test_theta_mse"] = float(torch.mean((test_pred.cpu()[:,-1] - test_target.cpu()[:,-1]) ** 2).item())
             wandb.log(wandb_payload, step=epoch)
 
-        if fold == 0 and len(preds) > 2 and task == "regression":
-            try:
-                import matplotlib
-                matplotlib.use('Agg')
-                import matplotlib.pyplot as plt
-                import io
-                test_pred = preds[2].detach().cpu().float().numpy()
-                test_target = (data.y[data.test_mask] if hasattr(data, "test_mask") else data.y).detach().cpu().float().numpy()
-                if test_pred.shape[1] >= 2 and test_target.shape[1] >= 2:
-                    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-                    axes[0].scatter(test_target[:, 0], test_pred[:, 0], alpha=0.4, s=8)
-                    axes[0].plot([test_target[:, 0].min(), test_target[:, 0].max()],
-                                 [test_target[:, 0].min(), test_target[:, 0].max()], 'r--', linewidth=1)
-                    axes[0].set_title(f'V Magnitude | Epoch {epoch}')
-                    axes[0].set_xlabel('Ground Truth')
-                    axes[0].set_ylabel('Predicted')
-                    axes[1].scatter(test_target[:, -1], test_pred[:, -1], alpha=0.4, s=8, color='orange')
-                    axes[1].plot([test_target[:, -1].min(), test_target[:, -1].max()],
-                                 [test_target[:, -1].min(), test_target[:, -1].max()], 'r--', linewidth=1)
-                    axes[1].set_title(f'Theta | Epoch {epoch}')
-                    axes[1].set_xlabel('Ground Truth')
-                    axes[1].set_ylabel('Predicted')
-                    plt.tight_layout()
-                    buf = io.BytesIO()
-                    fig.savefig(buf, format='png')
-                    buf.seek(0)
-                    wandb.log({f"fold{fold}_V_theta_scatter": wandb.Image(buf, caption=f"Epoch {epoch}")}, step=epoch)
-                    plt.close(fig)
-            except Exception as e:
-                print(f"[warn] V/theta scatter plot failed for epoch {epoch}: {e}")
-
         if task == "regression":
             new_best = val_loss < best_val_loss
         else:
@@ -1617,5 +1586,6 @@ if __name__ == "__main__":
         print(f"Test loss: {test_loss_mean:.4f} +/- {test_loss_std:.4f} | Val loss: {val_loss_mean:.4f}")
     else:
         print(f"Test acc: {test_acc_mean:.4f} +/- {test_acc_std:.4f} | Val acc: {val_acc_mean:.4f}")
+
 
     print(f"[info] All outputs saved to: {get_save_dir('outputs')}")
