@@ -1,5 +1,6 @@
 # Copyright 2022 Twitter, Inc.
 # SPDX-License-Identifier: Apache-2.0
+# these copyrights were included in Alessio's original codebase so am keeping there here for reference
 
 from operator import pos
 import torch
@@ -864,4 +865,5 @@ class PolySpectralGNN(PolynomialSheafDiffusion):
 
         x = x.reshape(self.graph_size, -1)
         x = self.lin2(x)
+
         return x if getattr(self, "task", None) == "regression" else F.log_softmax(x, dim=1)
